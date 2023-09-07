@@ -10,7 +10,8 @@ describe('Device Emulation', () => {
 			slowMo: 10,
 			devtools: false,
 		})
-		page = await browser.newPage()
+		const context = await browser.createIncognitoBrowserContext()
+		page = await context.newPage()
 		await page.setDefaultTimeout(10000)
 		await page.setDefaultNavigationTimeout(20000)
 	})
@@ -22,19 +23,19 @@ describe('Device Emulation', () => {
 	it('Desktop Device Test', async function () {
 		await page.setViewport({ width: 1650, height: 1050 })
 		await page.goto('https://www.example.com')
-		await page.waitForTimeout(5000)
+		await page.waitForTimeout(3000)
 	})
 	it('Tablet Device Test', async function () {
 		const tablet = puppeteer.KnownDevices['iPad Pro 11 landscape']
 		await page.emulate(tablet)
 		await page.goto('https://www.example.com')
-		await page.waitForTimeout(5000)
+		await page.waitForTimeout(3000)
 	})
 
 	it('Mobile Device Test', async function () {
 		const mobile = puppeteer.KnownDevices['iPhone 12 Pro']
 		await page.emulate(mobile)
 		await page.goto('https://www.example.com')
-		await page.waitForTimeout(5000)
+		await page.waitForTimeout(3000)
 	})
 })
