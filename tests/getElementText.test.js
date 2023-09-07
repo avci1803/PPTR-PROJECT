@@ -12,13 +12,21 @@ describe('My Second Puppeteer Test', () => {
 			devtools: false,
 		})
 
-		page = await browser.newPage()
+		page = (await browser).newPage()
 		await page.setDefaultTimeout(10000)
 		await page.setDefaultNavigationTimeout(20000)
 	})
 
 	after(async function () {
-		await browser.close()
+		//await browser.close()
+	})
+
+	beforeEach(async function () {
+		//execute before each test case
+	})
+
+	afterEach(async function () {
+		//execute after each test case
 	})
 
 	it('should get the element text', async function () {
